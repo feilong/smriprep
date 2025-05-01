@@ -1386,7 +1386,7 @@ def init_resample_surfaces_wb_wf(
         iterfield=['surface_in', 'current_sphere', 'new_sphere'],
         name='resampler',
     )
-    new_sphere = [
+    resampler.inputs.new_sphere = [
         str(
             tf.get(
                 template=space,
@@ -1401,8 +1401,6 @@ def init_resample_surfaces_wb_wf(
         for _surf in surfaces
         for hemi in ['L', 'R']
     ]
-    print(new_sphere)
-    resampler.inputs.new_sphere = new_sphere
 
     surface_groups = pe.Node(
         niu.Split(splits=[2] * len(surfaces)),
